@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/covid19/static/css/main.3dd0b269.css",
+    "main.js": "/covid19/static/js/main.e3c4c060.js",
+    "static/media/CentraNo2-Bold.ttf": "/covid19/static/media/CentraNo2-Bold.2faff7f7d3fc92a2fcd9.ttf",
+    "static/media/covid.png": "/covid19/static/media/covid.9e5d4fc7428c24bbc17d.png",
+    "index.html": "/covid19/index.html",
+    "main.3dd0b269.css.map": "/covid19/static/css/main.3dd0b269.css.map",
+    "main.e3c4c060.js.map": "/covid19/static/js/main.e3c4c060.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3dd0b269.css",
+    "static/js/main.e3c4c060.js"
+  ]
+}
