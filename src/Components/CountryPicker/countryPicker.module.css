@@ -1,0 +1,10 @@
+.formcontrol {
+  width: 30%;
+}
+.formcontrol > select {
+  background-color: royalblue;
+  color: snow;
+  border-radius: 0.3rem;
+  padding: 0.2rem;
+  outline: 0;
+}
