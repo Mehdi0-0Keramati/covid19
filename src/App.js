@@ -23,11 +23,11 @@ const App = () => {
         setDeaths(Global.TotalDeaths)
         setLastUpdate(Global.Date)
 
-        Countries.filter((item) => (
-          item.Slug.includes(country) ? setConfirmed(item.TotalConfirmed) || setRecovered(item.TotalRecovered) || setDeaths(item.TotalDeaths) || setLastUpdate(item.Date) : ""
-        ))
-
-        return { confirmed, recovered, deaths, lastUpdate }
+        if (country) {
+          Countries.filter((item) => (
+            item.Slug.includes(country) ? setConfirmed(item.TotalConfirmed) || setRecovered(item.TotalRecovered) || setDeaths(item.TotalDeaths) || setLastUpdate(item.Date) : ""
+          ))
+        }
 
       } catch (error) {
         console.log(error);
