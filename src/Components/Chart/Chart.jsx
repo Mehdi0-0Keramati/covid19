@@ -1,18 +1,35 @@
 import { useEffect, useState } from "react";
-import { fetchDailyData } from "../../api";
+import axios from "axios";
 import Chart from "chart.js/auto"
 import { Bar, Line } from "react-chartjs-2";
+
 import styles from "./chart.module.css";
 
-const ChartData = ({ data: { confirmed, recovered, deaths }, country }) => {
+const ChartData = ({ confirmed, recovered, deaths, country }) => {
     const [dailyData, setDailyData] = useState([])
 
     useEffect(() => {
-        const fetchAPI = async () => {
-            setDailyData(await fetchDailyData())
+        const url = `https://api.covid19api.com/dayone/country/${country}`
+        
+        const fetchDailyData = async () => {
+            try {
+                const { data } = await axios.get(`${url}`)
+
+                const modifiedData = data.map((dailyData) => ({
+                    confirmed: dailyData.Confirmed,
+                    deaths: dailyData.Deaths,
+                    date: dailyData.Date,
+                }))
+
+
+                setDailyData(modifiedData)
+
+            } catch (error) {
+                console.log(error);
+            }
         }
-        fetchAPI()
-    }, [])
+        fetchDailyData()
+    }, [country])
 
     const lineChart = (
         dailyData.length ?
@@ -50,7 +67,7 @@ const ChartData = ({ data: { confirmed, recovered, deaths }, country }) => {
                                 'rgba(0,255,0,.5)',
                                 'rgba(255,0,0,.5)',
                             ],
-                            data: [confirmed.value, recovered.value, deaths.value]
+                            data: [confirmed, recovered, deaths]
                         }]
                     }}
                     options={{
@@ -64,7 +81,7 @@ const ChartData = ({ data: { confirmed, recovered, deaths }, country }) => {
     return (
         <>
             <div className={styles.container}>
-                {country ? barChart : lineChart}
+                {country ? lineChart : barChart}
             </div>
         </>
     );

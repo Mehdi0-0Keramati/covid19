@@ -2,7 +2,7 @@ import CountUp from "react-countup";
 import Styles from "./cards.module.css"
 import cx from "classnames"
 
-const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
+const Cards = ({ confirmed, recovered, deaths, lastUpdate }) => {
     if (!confirmed) {
         return "Loading..."
     }
@@ -12,7 +12,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                 <div className={cx(Styles.item, Styles.intected)}>
                     <p className={Styles.title}>Intected</p>
                     <b>
-                        <CountUp start={0} end={confirmed.value} duration={2.5} separator="," />
+                        <CountUp start={0} end={confirmed} duration={2.5} separator="," />
                     </b>
                     <p className={Styles.lastUpdate}>{new Date(lastUpdate).toDateString()}</p>
                     <p>number of active cases of COVID-19</p>
@@ -21,7 +21,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                 <div className={cx(Styles.item, Styles.recovered)}>
                     <p className={Styles.title}>Recovered</p>
                     <b>
-                        <CountUp start={0} end={recovered.value} duration={2.5} separator="," />
+                        <CountUp start={0} end={recovered} duration={2.5} separator="," />
                     </b>
                     <p className={Styles.lastUpdate}>{new Date(lastUpdate).toDateString()}</p>
                     <p>number of active cases of COVID-19</p>
@@ -30,7 +30,7 @@ const Cards = ({ data: { confirmed, recovered, deaths, lastUpdate } }) => {
                 <div className={cx(Styles.item, Styles.deaths)}>
                     <p className={Styles.title}>Deaths</p>
                     <b>
-                        <CountUp start={0} end={deaths.value} duration={2.5} separator="," />
+                        <CountUp start={0} end={deaths} duration={2.5} separator="," />
                     </b>
                     <p className={Styles.lastUpdate}>{new Date(lastUpdate).toDateString()}</p>
                     <p>number of active cases of COVID-19</p>

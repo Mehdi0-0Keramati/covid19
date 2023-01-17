@@ -1,14 +1,21 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 import Styles from "./countryPicker.module.css"
-import { fetchCountries } from "../../api/index"
 
 const CountryPicker = ({ handleCountryChange }) => {
     const [Countries, setCountries] = useState([])
     useEffect(() => {
-        const fetchAPI = async () => {
-            setCountries(await fetchCountries())
+        const fetchCountries = async () => {
+            try {
+                const { data } = await axios.get('https://api.covid19api.com/countries');
+
+                const countries = data.map((country) => country.Slug);
+                setCountries(countries);
+            } catch (error) {
+                console.log(error);
+            }
         }
-        fetchAPI()
+        fetchCountries()
     }, [setCountries])
     return (
         <div>
